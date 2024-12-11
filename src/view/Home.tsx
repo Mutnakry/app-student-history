@@ -13,6 +13,11 @@ function Home() {
         <Carucel/>
       </div>
       <div>
+        <a href="/createproduct">add product</a>
+        <a href="/showroom">Show</a>
+        <a href="/classroom">Add category</a>
+      </div>
+      <div>
         <MenuCategory/>
       </div>
       <div>
