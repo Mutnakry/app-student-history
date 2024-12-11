@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaTelegram, FaFacebook } from "react-icons/fa";
 import QR from '../assets/qrcode.png'
 function Footer() {

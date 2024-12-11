@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -11,7 +9,7 @@ import { auth } from './firebase';
 import Home from './view/Home.js';
 import CreateProduct from './component/CreateProduct.js';
 import Classroom from './component/Classroom.js'
-import Classrooms from './component/Classrooms.js'
+// import Classrooms from './component/Classrooms.js'
 import ShowRoom from './component/ShowRoom.js';
 
 function App() {

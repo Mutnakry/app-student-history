@@ -11,7 +11,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setFormError] = useState<string>("");
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);

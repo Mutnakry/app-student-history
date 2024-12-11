@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaLink, FaFacebookF, FaSearch, FaTwitter } from 'react-icons/fa';
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
@@ -19,6 +19,7 @@ export interface ProductItem {
     village: string;
     status: string;
     imageUrl?: string;
+    
 }
 
 function ProductHome() {
@@ -41,7 +42,7 @@ function ProductHome() {
                 ...(doc.data() as Omit<ProductItem, 'id'>),
             }));
             setProducts(productList);
-        } catch (error) {
+        } catch (error:any) {
             setError('Failed to load products');
             console.error('Error fetching products:', error);
         } finally {
@@ -173,6 +174,7 @@ function ProductHome() {
                         ) : (
                             <div className="text-center col-span-full text-gray-500">
                                 មិនមានផលិតផលទេ!
+                                {error}
                             </div>
                         )}
                     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Navbar from '../component/Navbar'
 import MenuCategory from './category/MenuCategory'
 import Carucel from './category/Carucel'
