@@ -125,7 +125,7 @@ function ProductHome() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <Link to={`/showlink/${product.id}`}>
+                                    <Link to={`/showroom/${product.id}`}>
                                         <motion.img
                                             className="w-full h-[250px] object-cover bg-slate-50 rounded-tl-lg"
                                             src={product.imageUrl}

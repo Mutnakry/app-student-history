@@ -11,6 +11,7 @@ import CreateProduct from './component/CreateProduct.js';
 import Classroom from './component/Classroom.js'
 // import Classrooms from './component/Classrooms.js'
 import ShowRoom from './component/ShowRoom.js';
+import ShowImage from './component/ShowImage.js'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,6 +34,7 @@ function App() {
           <Route path="/createproduct" element={<CreateProduct />} />
           <Route path="/classroom" element={<Classroom />} />
           <Route path="/showroom" element={<ShowRoom />} />
+          <Route path="/showroom/:id" element={<ShowImage />} />
 
         </Routes>
         <ToastContainer />
