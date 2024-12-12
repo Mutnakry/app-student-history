@@ -12,6 +12,7 @@ import Classroom from './component/Classroom.js'
 // import Classrooms from './component/Classrooms.js'
 import ShowRoom from './component/ShowRoom.js';
 import ShowImage from './component/ShowImage.js'
+import ProductByNameRoom from './view/product/ProductByNameRoom.js';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,6 +36,8 @@ function App() {
           <Route path="/classroom" element={<Classroom />} />
           <Route path="/showroom" element={<ShowRoom />} />
           <Route path="/showroom/:id" element={<ShowImage />} />
+          <Route path="/classroom/product/:category_id" element={<ProductByNameRoom />} />
+
 
         </Routes>
         <ToastContainer />

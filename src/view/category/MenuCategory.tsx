@@ -54,7 +54,7 @@ export default function MenuCategory() {
                         {classRoom.map((item) => (
                             <div key={item.id} className="flex flex-col items-center space-y-3 p-4 rounded hover:bg-gray-100 transition">
                                 <div className="bg-blue-300  border-2 border-orange-500 rounded-full h-16 w-16 flex items-center justify-center overflow-hidden">
-                                    <Link to={`/category/detailcategory/${item.id}`}>
+                                    <Link to={`/classroom/product/${item.id}`}>
                                         <img
                                             className="h-full w-full object-cover"
                                             src={item.imageUrl} // Changed to 'imageUrl'

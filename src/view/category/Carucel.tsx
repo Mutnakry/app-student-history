@@ -132,7 +132,7 @@ export default function Carousel() {
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto body mt-2 w-full sm:w-[768px] lg:w-full md:px-0 px-4">
+    <div className="max-w-screen-lg mx-auto body mt-2 lg:w-full w-[768px] md:px-0  px-4">
       <div className="relative overflow-hidden lg:w-full">
         <div
           className="flex transition-transform duration-500"

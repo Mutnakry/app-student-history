@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaLink, FaFacebookF, FaSearch, FaTwitter } from 'react-icons/fa';
+import { FaLink, FaFacebookF, FaSearch, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ export interface ProductItem {
     village: string;
     status: string;
     imageUrl?: string;
-    
+
 }
 
 function ProductHome() {
@@ -42,7 +42,7 @@ function ProductHome() {
                 ...(doc.data() as Omit<ProductItem, 'id'>),
             }));
             setProducts(productList);
-        } catch (error:any) {
+        } catch (error: any) {
             setError('Failed to load products');
             console.error('Error fetching products:', error);
         } finally {
@@ -67,25 +67,59 @@ function ProductHome() {
 
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-    const handleCopyLink = (productId: string) => {
-        const link = `http://localhost:3000/showlink/${productId}`;
-        navigator.clipboard.writeText(link)
-            .then(() => alert('Link copied to clipboard!'))
-            .catch((error) => console.error('Error copying link:', error));
-    };
 
-    const handleFacebookShare = (productId: string) => {
-        const productLink = `http://localhost:3000/showlink/${productId}`;
-        const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productLink)}`;
+    const handleFacebookShare = (imageUrl: string) => {
+        const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(imageUrl)}`;
         window.open(facebookShareUrl, '_blank', 'width=600,height=400');
     };
 
-    const handleTwitterShare = (productId: string) => {
-        const productLink = `http://localhost:3000/showlink/${productId}`;
-        const tweetText = `Check out this product: ${productLink}`;
-        const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(productLink)}`;
+
+    
+    const handleTwitterShare = (imageUrl: string) => {
+        if (!imageUrl) {
+            alert('Image URL is not available.');
+            return;
+        }
+        const tweetText = encodeURIComponent('Check out this amazing product!');
+        const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(imageUrl)}&text=${tweetText}`;
         window.open(twitterShareUrl, '_blank', 'width=600,height=400');
     };
+    
+
+
+    
+
+    // Function to "share" on Instagram (direct app opening for mobile devices)
+    const handleInstagramShare = (imageUrl: string) => {
+        if (navigator.share) {
+            // Use Web Share API for mobile devices
+            navigator.share({
+                title: 'Check out this product!',
+                text: 'Check out this amazing product on our site!',
+                url: imageUrl,
+            }).catch((error) => console.error('Error sharing on Instagram:', error));
+        } else {
+            alert('Instagram sharing is only supported on mobile devices.');
+        }
+    };
+
+
+    const copyImageLink = (imageUrl: string) => {
+        if (!imageUrl) {
+            alert('Image link is not available.');
+            return;
+        }
+
+        navigator.clipboard.writeText(imageUrl)
+            .then(() => {
+                alert('Image link copied to clipboard!');
+            })
+            .catch((error) => {
+                console.error('Failed to copy image link: ', error);
+                alert('Failed to copy image link.');
+            });
+    };
+
 
     return (
         <div className="mb-5">
@@ -137,35 +171,42 @@ function ProductHome() {
                                     <div className="flex flex-col justify-between p-2 space-y-4 w-full">
                                         <div>
                                             <h3 className="font-semibold text-lg">{product.names}</h3>
-                                            <p className="text-gray-500 text-sm line-clamp-6">{product.description}</p>
+                                            <p className="text-gray-500 text-sm line-clamp-3">{product.description}</p>
                                         </div>
                                         <div className="flex justify-end space-x-2 items-center">
                                             <motion.button
-                                                className="px-2 py-1 text-xs bg-orange-500 hover:bg-orange-600 text-white rounded flex items-center gap-2"
-                                                onClick={() => handleFacebookShare(product.id)}
+                                                className="px-2 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded flex items-center gap-2"
+                                                onClick={() => handleFacebookShare(product.imageUrl || '')}
                                                 whileHover={{ scale: 1.1 }}
                                                 whileTap={{ scale: 0.95 }}
                                             >
                                                 <FaFacebookF />
-                                                <span>Facebook</span>
                                             </motion.button>
                                             <motion.button
                                                 className="px-2 py-1 text-xs bg-orange-500 hover:bg-orange-600 text-white rounded flex items-center gap-2"
-                                                onClick={() => handleTwitterShare(product.id)}
+                                                onClick={() => handleInstagramShare(product.imageUrl || '')}
+                                                whileHover={{ scale: 1.1 }}
+                                                whileTap={{ scale: 0.95 }}
+                                            >
+                                                <FaInstagram />
+                                            </motion.button>
+
+                                            <motion.button
+                                                className="px-2 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded flex items-center gap-2"
+                                                onClick={() => handleTwitterShare(product.imageUrl || '')}
                                                 whileHover={{ scale: 1.1 }}
                                                 whileTap={{ scale: 0.95 }}
                                             >
                                                 <FaTwitter />
-                                                <span>Twitter</span>
                                             </motion.button>
+
                                             <motion.button
-                                                className="px-2 py-1 text-xs bg-orange-500 hover:bg-orange-600 text-white rounded flex items-center gap-2"
-                                                onClick={() => handleCopyLink(product.id)}
+                                                className="px-2 py-1 text-xs bg-gray-500 hover:bg-gray-600 text-white rounded flex items-center gap-2"
+                                                onClick={() => copyImageLink(product.imageUrl || '')}
                                                 whileHover={{ scale: 1.1 }}
                                                 whileTap={{ scale: 0.95 }}
                                             >
                                                 <FaLink />
-                                                <span>Copy Link</span>
                                             </motion.button>
                                         </div>
                                     </div>

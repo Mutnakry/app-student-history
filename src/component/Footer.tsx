@@ -2,8 +2,8 @@ import { FaTelegram, FaFacebook } from "react-icons/fa";
 import QR from '../assets/qrcode.png'
 function Footer() {
     return (
-        <footer className="px-4 pt-4 bg-sky-700/50  ">
-            <div className="max-w-screen-xl mx-auto  ">
+        <footer className="px-4 pt-4 bg-sky-700/50 lg:w-full w-[768px] ">
+            <div className="max-w-screen-lg mx-auto body mt-2 lg:w-full w-[768px] md:px-0  px-4  ">
                 <div className="flex justify-between gap-6 text-white mb-6">
                     {/* Follow Khmer 24 Section */}
                     <div className="space-y-3">

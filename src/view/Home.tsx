@@ -8,23 +8,18 @@ import Footer from '../component/Footer'
 function Home() {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div>
-        <Carucel/>
+        <Carucel />
       </div>
       <div>
-        <a href="/createproduct">add product</a>
-        <a href="/showroom">Show</a>
-        <a href="/classroom">Add category</a>
+        <MenuCategory />
       </div>
       <div>
-        <MenuCategory/>
+        <ProductHome />
       </div>
       <div>
-        <ProductHome/>
-      </div>
-      <div>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   )
